@@ -134,6 +134,55 @@ public class Matrix
 		  set(r1, i, set(r2, i, get(r1, i)));
 	  }
   }
+  
+  
+  //returns copy of row r
+  public Object[] getRow( int r ) 
+  {
+	  return matrix[r];
+  }//O(1)
+  
+  //returns copy of column r
+  public Object[] getCol( int r )
+  {
+	  Object[] col = new Object[size()];
+	  for (int i = 0; i < size(); i++)  {
+		  col[i] = get(i,r);
+	  }
+	  return col;
+  }
+
+
+  //replaces row r with 1D array newRow
+  //returns old row
+  public Object [] setRow( int r, Object[] newRow ) 
+  {
+	  Object[] temp = getRow(r);
+	  matrix[r] = newRow;
+	  return temp;
+  }//O(1)
+
+
+  public Object [] setCol( int c, Object[] newCol ) 
+  {
+	  Object[] temp = getCol(c);
+	  for (int i = 0; i < size(); i++) {
+		  matrix[i][c] = newCol[i];
+	  }
+	  return temp;
+  }//O(1)
+
+
+  public void transpose() 
+  {
+	  for (int i = 0; i < size(); i++) {
+		  for (int x = i + 1; x < size(); x++) {
+			  Object temp = matrix[i][x];
+			  matrix[i][x] = matrix[x][i];
+			  matrix[x][i] = temp;
+		  }
+	  }
+  }//O(?)
 
 
   //main method for testing
